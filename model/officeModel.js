@@ -13,9 +13,7 @@ module.exports = (sequelize, type) => {
   })
 
   office.afterCreate(function(o){
-
-    console.log('----+++++++-+-+-+-+-+-+-+-+-+-+-+-',o);
-    
+    console.log('trigger after insert data');
   });
 
   return office;

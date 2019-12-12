@@ -16,7 +16,7 @@ const OfficeDetails = OfficeModel(sequelize, Sequelize)
 OfficeDetails.belongsTo(TowerDetails)
 
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })//create db schema from orm
     .then(() => seed())
     .then(() => TowerDetails.findOne({
         where: {
