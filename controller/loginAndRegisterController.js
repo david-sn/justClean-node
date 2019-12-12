@@ -32,7 +32,7 @@ module.exports.registerUser = async function (req, res) {
         return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
 
     if (req.body.email) {
-        let isUserFound = await UserDetails.findOne({ where: { email: username } });
+        let isUserFound = await UserDetails.findOne({ where: { email: req.body.email } });
         if (isUserFound && isUserFound.dataValues) {
             return res.status(200).json(await DataTemplate.responseTemplate("DATA_EXIST", null, req.body.language, null));
         }
@@ -59,7 +59,9 @@ module.exports.registerUser = async function (req, res) {
 function generateToken(userData) {
     return jwt.sign(setUserInfo(userData), keys.privateKEY, { algorithm: 'RS256', expiresIn: authConfig.tokenTime });;
 }
-
+function hashPassword(plaintextPassword) {
+    return bcrypt.hashSync(plaintextPassword, 10);
+}
 function setUserInfo(user) {
     return {
         id: user.id,

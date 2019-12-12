@@ -9,6 +9,8 @@ passportService = require('./config/passport');
 
 var officeRouter = require('./routes/officeRouter');
 var towerRouter = require('./routes/towerRouter');
+var userRouter = require('./routes/userRouter');
+
 
 var app = express();
 
@@ -23,9 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-let io;
-console.log('*******************************************', io);
-
+let io;//inject io in request
 app.use(function (req, res, next) {
   if (!io)
     io = require('./controller/socketIO').io;
@@ -35,6 +35,8 @@ app.use(function (req, res, next) {
 
 app.use('/office', officeRouter);
 app.use('/tower', towerRouter);
+app.use('/user', userRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
