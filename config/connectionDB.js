@@ -39,8 +39,6 @@ const seed = () => {
         OfficeDetails.create({ name: 'office5', office_code: '505', description: "No view", number_of_chairs: 20, floor: '5th' }),
         OfficeDetails.create({ name: 'office6', office_code: '606', description: "Closed view", number_of_chairs: 20, floor: '6th' }),
     ]).then(([T1, T2, O1, O2, O3, O4, O5, O6]) => {
-        console.log(T1);
-
         return Promise.all([
             O1.setTowerDetail(T1),
             O2.setTowerDetail(T1),

@@ -20,6 +20,8 @@ module.exports.createOffice = async function (req, res) {
                 .then(savedOffice => {
                     savedOffice.setTowerDetail(towerDB);
                     res.status(200).json(DataTemplate.responseTemplate("OK", savedOffice.dataValues, req.body.language));
+                    //emit the change
+                    req.io.emit('justCleanEvents', { event: "CREATR_OFFICE", result: savedOffice.dataValues });
                 })
                 .catch(e => {
                     res.status(500).json(DataTemplate.responseTemplate("ERROR", e, req.body.language));
@@ -49,6 +51,8 @@ module.exports.editOffice = async function (req, res) {
                         res.status(200).json(DataTemplate.responseTemplate("DATA_NOT_FOUND", null, req.body.language));
                     } else {
                         res.status(200).json(DataTemplate.responseTemplate("OK", updatedOffice.dataValues, req.body.language));
+                        //emit the change
+                        req.io.emit('justCleanEvents', { event: "UPDATE_OFFICE", result: { id: req.query.id, description: req.body.description, office_code: req.body.code, name: req.body.name, number_of_chairs: req.body.numberOfChairs, floor: req.body.floor, towerDetailId: towerDB.id } });
                     }
                 })
                 .catch(e => {
@@ -68,8 +72,11 @@ module.exports.deleteOffice = async function (req, res) {
         .then(deletedOffice => {
             if (deletedOffice == 0)
                 res.status(200).json(DataTemplate.responseTemplate("DATA_NOT_FOUND", null, req.body.language));
-            else
+            else {
                 res.status(200).json(DataTemplate.responseTemplate("OK", deletedOffice, req.body.language));
+                //emit the change
+                req.io.emit('justCleanEvents', { event: "DELETE_OFFICE", result: { id: req.query.id } });
+            }
         })
         .catch(e => {
             res.status(500).json(DataTemplate.responseTemplate("ERROR", e, req.body.language));

@@ -12,6 +12,8 @@ module.exports.createTower = async function (req, res) {
     TowerDetails.create({ name: req.body.name, lat: req.body.lat, lon: req.body.lon, number_of_offices: req.body.numberOfOffices, avg_rating: 0.00, location: req.body.location })
         .then(savedTower => {
             res.status(200).json(DataTemplate.responseTemplate("OK", savedTower.dataValues, req.body.language));
+            //emit the change
+            req.io.emit('justCleanEvents', { event: "CREATR_TOWER", result: savedTower.dataValues });
         })
         .catch(e => {
             res.status(500).json(DataTemplate.responseTemplate("ERROR", e, req.body.language));
@@ -30,6 +32,8 @@ module.exports.editTower = async function (req, res) {
                 res.status(200).json(DataTemplate.responseTemplate("DATA_NOT_FOUND", null, req.body.language));
             } else {
                 res.status(200).json(DataTemplate.responseTemplate("OK", updatedTower, req.body.language));
+                //emit the change
+                req.io.emit('justCleanEvents', { event: "UPDATE_OFFICE", result: { id: req.query.id, name: req.body.name, lat: req.body.lat, lon: req.body.lon, number_of_offices: req.body.numberOfOffices, location: req.body.location } });
             }
 
         })
@@ -47,8 +51,11 @@ module.exports.deleteTower = async function (req, res) {
         .then(deletedTower => {
             if (deletedTowerResult == 0)
                 res.status(200).json(DataTemplate.responseTemplate("DATA_NOT_FOUND", null, req.body.language));
-            else
+            else {
                 res.status(200).json(DataTemplate.responseTemplate("OK", deletedTower, req.body.language));
+                //emit the change
+                req.io.emit('justCleanEvents', { event: "DELETE_TOWER", result: { id: req.query.id } });
+            }
         })
         .catch(e => {
             res.status(500).json(DataTemplate.responseTemplate("ERROR", e, req.body.language));
