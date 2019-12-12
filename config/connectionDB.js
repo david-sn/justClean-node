@@ -16,7 +16,7 @@ const OfficeDetails = OfficeModel(sequelize, Sequelize)
 OfficeDetails.belongsTo(TowerDetails)
 
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(() => seed())
     .then(() => TowerDetails.findOne({
         where: {

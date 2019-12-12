@@ -9,6 +9,9 @@ const Op = Sequelize.Op;
 
 
 module.exports.createOffice = async function (req, res) {
+    let { error } = Validation.createOffice(req.body);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
 
 
     //find the parent first, instead of make transaction
@@ -37,6 +40,10 @@ module.exports.createOffice = async function (req, res) {
 
 
 module.exports.editOffice = async function (req, res) {
+    req.body.id=req.query.id;    
+    let { error } = Validation.editOffice(req.body);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
 
     //find the parent first, instead of make transaction
     TowerDetails.findOne({
@@ -66,6 +73,9 @@ module.exports.editOffice = async function (req, res) {
 
 
 module.exports.deleteOffice = async function (req, res) {
+    let { error } = Validation.deleteTower(req.query);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
 
 
     OfficeDetails.destroy({ where: { id: req.query.id } })
@@ -85,6 +95,10 @@ module.exports.deleteOffice = async function (req, res) {
 
 
 module.exports.findOfficeById = async function (req, res) {
+    let { error } = Validation.findTowerById(req.query);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
+
     OfficeDetails.findOne({
         where: {
             id: req.query.id
@@ -102,6 +116,10 @@ module.exports.findOfficeById = async function (req, res) {
 
 
 module.exports.findAllOffices = async function (req, res) {
+    let { error } = Validation.findAllOffices(req.body);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
+
     OfficeDetails.findAndCountAll({
         include: [TowerDetails],
         order: [[req.body.sortKey, req.body.direction]],
@@ -116,12 +134,16 @@ module.exports.findAllOffices = async function (req, res) {
 }
 
 module.exports.searchOffices = async function (req, res) {
+    let { error } = Validation.searchOffices(req.body);
+    if (error)
+        return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });
+
     OfficeDetails.findAndCountAll(
         {
             where: Sequelize.or(
-                { office_code: { [Op.like]: `%${req.body.filter.value}%` } },
-                { description: { [Op.like]: `%${req.body.filter.value}%` } },
-                { name: { [Op.like]: `%${req.body.filter.value}%` } }
+                { office_code: { [Op.like]: `%${req.body.value}%` } },
+                { description: { [Op.like]: `%${req.body.value}%` } },
+                { name: { [Op.like]: `%${req.body.value}%` } }
             ),
             include: [TowerDetails],
             order: [[req.body.sortKey, req.body.direction]],
