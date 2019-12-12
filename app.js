@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+passportService = require('./config/passport');
+
+
 var officeRouter = require('./routes/officeRouter');
 var towerRouter = require('./routes/towerRouter');
 

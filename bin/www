@@ -87,6 +87,6 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log('JustClean server Started on port -------- ' + add.port);
+  console.log('JustClean server Started on port -------- ' + addr.port);
 
 }
