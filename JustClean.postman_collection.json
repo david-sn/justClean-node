@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "3e60c662-6a25-4e44-b9f5-da93edf7b8ef",
+		"name": "JustClean",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TowerCRUD",
+			"item": [
+				{
+					"name": "createTower",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"asdas\",\n    \"lat\": 33.33,\n    \"lon\": 333.3,\n    \"numberOfOffices\": 2,\n    \"location\": \"Egypt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tower/createTower",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tower",
+								"createTower"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTower",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"asdas\",\n    \"lat\": 33.33,\n    \"lon\": 333.3,\n    \"numberOfOffices\": 2,\n    \"location\": \"Egypt\",\n    \"id\":3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tower/deleteTower?id=3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tower",
+								"deleteTower"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTower",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"asdas\",\n    \"lat\": 33.33,\n    \"lon\": 333.3,\n    \"numberOfOffices\": 2,\n    \"location\": \"Egypt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tower/editTower?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tower",
+								"editTower"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTowerById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/tower/findTowerById?id=12",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tower",
+								"findTowerById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllTowers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sortKey\":\"name\",\n    \"direction\":\"ASC\",\n    \"pageSize\": 1,\n    \"page\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tower/findAllTowers",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tower",
+								"findAllTowers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "OfficeCRUD",
+			"item": [
+				{
+					"name": "createOffice",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkRhdmlkIiwiZW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNTc2MTkxNDgxLCJleHAiOjE1OTE3NDE0ODF9.Q7m7baXQqzWXB2ralKKp0vHn7Vj_ecGexWZ0VRVIjs7dj-sWI6VWpvab-76YNRFi0TPYGdb68KHi_6pdp7awrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"towerId\":1,\n    \"description\":\"myDesc\",\n    \"code\": \"1\",\n    \"name\":\"sd\",\n    \"numberOfChairs\":2,\n    \"floor\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/createOffice",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"createOffice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editOffice",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"towerId\":1,\n    \"description\":\"ASC\",\n    \"code\": \"123D\",\n    \"name\":\"sd\",\n    \"numberOfChairs\":2,\n    \"floor\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/editOffice?id=3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"editOffice"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletedOffice",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"towerId\":1,\n    \"description\":\"ASC\",\n    \"code\": \"123D\",\n    \"name\":\"sd\",\n    \"numberOfChairs\":2,\n    \"floor\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/deleteOffice?id=3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"deleteOffice"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOfficeById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"towerId\":1,\n    \"description\":\"ASC\",\n    \"code\": \"123D\",\n    \"name\":\"sd\",\n    \"numberOfChairs\":2,\n    \"floor\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/findOfficeById?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"findOfficeById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllOffices",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sortKey\":\"name\",\n    \"direction\":\"DESC\",\n    \"pageSize\": 2,\n    \"page\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/findAllOffices",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"findAllOffices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchOffices",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": \"%\",\n    \"sortKey\": \"description\",\n    \"direction\": \"ASC\",\n    \"pageSize\": 100,\n    \"page\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/office/searchOffices",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"office",
+								"searchOffices"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"David\",\n    \"email\":\"d@d.com\",\n    \"password\": \"12345678\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"d@d.com\",\n    \"password\": \"12345678\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
