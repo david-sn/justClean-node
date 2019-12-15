@@ -18,10 +18,10 @@ module.exports.createOffice = async function (req, res) {
     TowerDetails.findOne({
         where: { id: req.body.towerId }
     }).then(function (towerDB) {
-        if (towerDB && towerDB.dataValues) {
-            OfficeDetails.create({ description: req.body.description, office_code: req.body.code, name: req.body.name, number_of_chairs: req.body.numberOfChairs, floor: req.body.floor })
+        if (towerDB && towerDB.dataValues&& towerDB.dataValues.id) {
+            OfficeDetails.create({ description: req.body.description, office_code: req.body.code, name: req.body.name, number_of_chairs: req.body.numberOfChairs, floor: req.body.floor,towerDetailId:towerDB.dataValues.id})
                 .then(savedOffice => {
-                    savedOffice.setTowerDetail(towerDB);
+                    // savedOffice.setTowerDetail(towerDB);
                     res.status(200).json(DataTemplate.responseTemplate("OK", savedOffice.dataValues, req.body.language));
                     //emit the change
                     req.io.emit('justCleanEvents', { event: "CREATR_OFFICE", result: savedOffice.dataValues });
@@ -40,7 +40,7 @@ module.exports.createOffice = async function (req, res) {
 
 
 module.exports.editOffice = async function (req, res) {
-    req.body.id=req.query.id;    
+    req.body.id = req.query.id;
     let { error } = Validation.editOffice(req.body);
     if (error)
         return res.status(400).json({ status: "BAD_REQUEST", message: error.details[0].message });

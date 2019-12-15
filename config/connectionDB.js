@@ -1,9 +1,9 @@
 
 const Sequelize = require('sequelize');
 
-const UsersModel = require('../model/usersModel')
-const OfficeModel = require('../model/officeModel')
-const TowerModel = require('../model/towerModel')
+const UsersModel = require('../models/userdetails')
+const OfficeModel = require('../models/officedetails')
+const TowerModel = require('../models/towerdetails')
 
 var sequelize = new Sequelize('mysql://root:root@localhost:3306/jc', {
 })
@@ -15,7 +15,7 @@ const OfficeDetails = OfficeModel(sequelize, Sequelize)
 
 OfficeDetails.belongsTo(TowerDetails)
 
-
+/*
 sequelize.sync({ force: true })//create db schema from orm
     .then(() => seed())
     .then(() => TowerDetails.findOne({
@@ -49,7 +49,7 @@ const seed = () => {
         ]);
     }).catch(error => console.log(error));
 };
-
+*/
 
 
 module.exports = {

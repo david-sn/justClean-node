@@ -59,7 +59,7 @@ module.exports.deleteTower = async function (req, res) {
 
     TowerDetails.destroy({ where: { id: req.query.id } })
         .then(deletedTower => {
-            if (deletedTowerResult == 0)
+            if (deletedTower == 0)
                 res.status(200).json(DataTemplate.responseTemplate("DATA_NOT_FOUND", null, req.body.language));
             else {
                 res.status(200).json(DataTemplate.responseTemplate("OK", deletedTower, req.body.language));

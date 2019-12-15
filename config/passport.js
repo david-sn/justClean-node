@@ -43,13 +43,8 @@ var jwtOptions = {
 
 
 
-var jwtLogin = new JwtStrategy(jwtOptions, async function (payload, done) {//payload === info from token
-    console.log(payload);
-    
+var jwtLogin = new JwtStrategy(jwtOptions, async function (payload, done) {//payload === info from token    
     let userDB = await UserDetails.findOne({ where: { id: payload.id } });
-                      
-    console.log(userDB);
-    
     if (userDB && userDB.dataValues) {
         return done(null, userDB.dataValues);
     } else {
