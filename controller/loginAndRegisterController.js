@@ -51,13 +51,13 @@ module.exports.registerUser = async function (req, res) {
             res.status(500).json(await DataTemplate.responseTemplate(false, "ERROR", null, req.body.language));
         }
     }).catch(async e => {
-        res.status(500).json(await DataTemplate.responseTemplate(false, "ERROR", null, req.body.language));
+        res.status(500).json(await DataTemplate.responseTemplate(false, "ERROR", e, req.body.language));
     });
 }
 
 
 function generateToken(userData) {
-    return jwt.sign(setUserInfo(userData), keys.privateKEY, { algorithm: 'RS256', expiresIn: authConfig.tokenTime });;
+    return jwt.sign(setUserInfo(userData), keys.privateKEY, { algorithm: 'RS256', expiresIn: authConfig.tokenTime });
 }
 function hashPassword(plaintextPassword) {
     return bcrypt.hashSync(plaintextPassword, 10);

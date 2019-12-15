@@ -32,7 +32,6 @@ var localLogin = new LocalStrategy(localOptions, async function (username, passw
     }
 });
 
-;
 
 var jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

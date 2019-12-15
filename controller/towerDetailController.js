@@ -1,5 +1,3 @@
-const util = require('util');
-
 let DataTemplate = require('../utils/templates.js');
 let Validation = require('../validation/validation');
 

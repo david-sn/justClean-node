@@ -8,7 +8,7 @@ io.on('connection', (socket) => {
 
 
     socket.on('disconnect', (s) => {
-
+        console.log(s);
     });
 })
 

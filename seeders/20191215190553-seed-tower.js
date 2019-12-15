@@ -36,4 +36,4 @@ function seed(queryInterface) {
       ])
     ]);
   }).catch(error => console.log(error));
-};
+}
