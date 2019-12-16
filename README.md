@@ -33,7 +33,11 @@ mysqlid --version
 
 9- **from postman under user folder you must create user(email, password) to use authenticated APIs**.
 
-10- Enjoy.
+10- run command ```./node_modules/.bin/sequelize-cli db:migrate``` to import database schema migration.
+
+11- run command ```./node_modules/.bin/sequelize-cli  db:seed:all``` to insert test data into schema.
+
+12- Enjoy.
 
 ## Scenarios
 1- on startup database schema will create automatically and will insert the following
@@ -48,5 +52,7 @@ in Office table 6 records [{id:1, name: 'office1',towerId:1 }, {id:2, name: 'off
 3- Authenticated APIs by add header {"Authorization":"Bearer {{TOKEN}}" }
 
 4- Enjoy to use other APIs from postman for tower and office and see real time affected by changes.
+
+_NOTE: **use ESLint by command ``` ./node_modules/.bin/eslint . ```  , and the result is variable defined but not used like parameter in callback**
 
 ###########################################
